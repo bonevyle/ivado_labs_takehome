@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=database
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - 5432:5432
+
+  ingest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ingest
+    container_name: ingest
+    command: ["python", "src/ingest.py"]
+
+  train:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: train
+    container_name: train
+    command: ["python", "src/train.py"]
+
+  predict:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: predict
+    container_name: predict
+    command: ["python", "src/predict.py"]
