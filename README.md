@@ -75,7 +75,8 @@ To train the linear regression model, we select data from the `silve_museum` to 
 {
     'museum_name': VARCHAR(256),
     'city_population': INTEGER(),
-    'visitor_count': INTEGER()
+    'visitor_count': INTEGER(),
+    'year': INTEGER()
 }
 ```
 
